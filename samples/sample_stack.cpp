@@ -1,35 +1,25 @@
-#include "stack_queue.h"
-#include <iostream>
-#include <string>
+#include "iostream"
+#include "string"
 #include "cstring"
-using namespace std;
-using std::cin;
-using std::cout;
-using std::string;
+#include "stack_queue.h"
 
-char invertBrackets(char ch)
-{
-	if (ch == '(') return ')';
-	else if (ch == '[') return ']';
-	else if (ch == '{') return '}';
-	return ' ';
-}
+using namespace std;
 
 bool isValid(const std::string& s) {
-    Stack<char> stack;
+    Stack<char> st;
 
     for (char ch : s) {
         if (ch == '(' || ch == '{' || ch == '[') {
-            stack.push(ch);
+            st.push(ch);
         }
 
         else if (ch == ')' || ch == '}' || ch == ']') {
-            if (stack.Empty()) {
+            if (st.Empty()) {
                 return false;
             }
 
-            char top = stack.top();
-            stack.pop();
+            char top = st.top();
+            st.pop();
 
 
             if ((ch == ')' && top != '(') ||
@@ -40,7 +30,7 @@ bool isValid(const std::string& s) {
         }
     }
 
-    return stack.Empty();
+    return st.Empty();
 }
 
 int main() {
